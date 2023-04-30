@@ -1,0 +1,105 @@
+<div class="box data-box">
+    <div class=" box-input border border-secondary rounded p-4">
+        <h5>1. Tax Filling Detail</h5>
+        <hr>
+        <p>Type of filling <span class="text-danger">*</span></p>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="filingType" value="0" [(ngModel)]="filingType">
+            <label class="form-check-label" for="filingType">Ordinary Filing <i class="bi bi-question-circle-fill"></i></label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="filingType" value="1" [(ngModel)]="filingType">
+            <label class="form-check-label" for="filingType">Additional Filing <i class="bi bi-question-circle-fill"></i></label>
+        </div>
+        <br><br>
+        <span class="container">
+            <div class="row">
+                <label for="month" class="form-label">VAT Month <span class="text-danger">* </span></label>
+                <div class="col-12 col-sm-6 col-md-4">
+                    <select class="form-select form-select-sm mb-3" [(ngModel)]="month" id="month" [ngClass]="month ? '' : 'require'">
+                        <option value=''>--Select Month--</option>
+                        <option *ngFor="let item of monthList" value={{item.value}} [disabled]="+item.value > currentMonth">{{item.month}} </option>
+                      </select>
+                </div>
+                
+                <div class="col-12 col-sm-6 col-md-4">
+                    <select class="form-select form-select-sm" [(ngModel)]="year" id="year" [ngClass]="year ? '' : 'require'">
+                        <option value=''>--Select Year--</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                      </select>
+                </div>
+
+            </div>
+
+        </span>
+        <h5>2. Tax Computation</h5>
+        <hr>
+        <P class="fw-bold">Provide total value taxable electronic service <span class="text-danger">*</span></P>
+        <span class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-8">
+                  <label>1. Total value taxable electronic service exclusive of VAT</label>
+                </div>
+                <div class="col-12 col-md-4 ">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-end" placeholder="0.00"  aria-describedby="saleAmount" id="saleAmount" [ngModel]="saleAmount" (ngModelChange)="filterContentSaleAmount($event)" (focus)="removeCommasSaleAmount()" (blur)="addCommasSaleAmount()" [ngClass]="saleAmount && saleAmount !== '0.00' ? '' : 'require'">
+                        <span class="input-group-text" id="saleAmount">THB</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8 pt-1">
+                    <label>2. Total VAT to be remitted (7% of 1.)</label>
+                  </div>
+                <div class="col-12 col-md-4 pt-1 ">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-end" placeholder="0.00"  aria-describedby="taxAmount" id="taxAmount" [ngModel]="taxAmount" (ngModelChange)="filterContentTaxAmount($event)" (focus)="removeCommasTaxAmount()" (blur)="addCommasTaxAmount()">
+                        <span class="input-group-text" id="taxAmount">THB</span>
+                    </div>
+                </div>
+              </div>
+        </span>
+
+        <P *ngIf="filingType == '1'" class="fw-bold">In case of late filling and payment, or addition filling</P>
+        <span class="container" *ngIf="filingType == '1'">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-8">
+                  <label>3. Surcharge <i class="bi bi-question-circle-fill"></i></label>
+                </div>
+                <div class="col-12 col-md-4 ">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-end" placeholder="0.00"  aria-describedby="surcharge" id="surcharge" [ngModel]="surcharge" disabled>
+                        <span class="input-group-text" id="surcharge">THB</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8 pt-1">
+                    <label>4. Penalty <i class="bi bi-question-circle-fill"></i></label>
+                  </div>
+                <div class="col-12 col-md-4 pt-1 ">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-end" placeholder="0.00"  aria-describedby="penalty" id="penalty" [ngModel]="penalty" disabled>
+                        <span class="input-group-text" id="penalty">THB</span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8 pt-1">
+                    <label>5. Total amount of VAT, surchage, and penalty to be remitted (2+3+4)</label>
+                  </div>
+                <div class="col-12 col-md-4 pt-1 ">
+                    <div class="input-group">
+                        <input type="text" class="form-control text-end" placeholder="0.00"  aria-describedby="totalAmount" id="totalAmount" [ngModel]="totalAmount" disabled>
+                        <span class="input-group-text" id="totalAmount">THB</span>
+                    </div>
+                </div>
+              </div>
+        </span>
+    </div>
+    <div class="box-input pt-2">
+        <button type="button" class="btn btn-dark rounded-pill" (click)="next()">Next</button>
+    </div>
+    
+</div>
+

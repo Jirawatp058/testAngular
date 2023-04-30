@@ -1,0 +1,97 @@
+<div class="box data-box">
+    <div class=" box-input border border-secondary rounded p-4">
+        <h5>Tax Filling Detail</h5>
+        <hr>
+
+        <span class="container">
+            <div class="row justify-content-start">
+                <div class="col-12 col-md-2">
+                    <label class="fw-semibold">Type of filling</label>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label class="form-check-label">{{filingType}}</label>
+                </div>
+            </div>
+            <div class="row justify-content-start pt-1">
+                <div class="col-12 col-md-2">
+                    <label class="fw-semibold">VAT Month</label>
+                </div>
+                <div class="col-12 col-md-2">
+                    <label class="form-check-label" *ngFor="let data of month">{{data.month}} {{year}}</label>
+                </div>
+            </div>
+        </span>
+
+        <br><br>
+
+        <h5> Tax Computation</h5>
+        <hr>
+        <P class="fw-semibold">Provide total value taxable electronic service <span class="text-danger">*</span></P>
+        <span class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-8">
+                    <label class="fw-semibold">Total value taxable electronic service exclusive of VAT</label>
+                </div>
+                <div class="col-12 col-md-4 money-right">
+                    <label>{{saleAmount}} THB</label>
+                </div>
+
+                <div class="col-12 col-md-8 pt-1">
+                    <label class="fw-semibold">Total VAT to be remitted (7% of 1.)</label>
+                    <p class="fw-light">(7% ofTotal value of taxable electronic service exclusive of VAT)</p>
+
+                </div>
+                <div class="col-12 col-md-4 pt-1 money-right">
+                    <label>{{taxAmount}} THB</label>
+                </div>
+            </div>
+        </span>
+
+        <P *ngIf="filingType == 'Additional Filing'" class="fw-semibold">In case of late filling and payment, or
+            addition filling</P>
+        <span *ngIf="filingType == 'Additional Filing'" class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-8">
+                    <label class="fw-semibold">3. Surcharge </label>
+                </div>
+                <div class="col-12 col-md-4 money-right">
+                    <label>{{surcharge}} THB</label>
+                </div>
+
+                <div class="col-12 col-md-8 pt-1">
+                    <label class="fw-semibold">4. Penalty </label>
+                </div>
+                <div class="col-12 col-md-4 pt-1 money-right ">
+                    <label>{{penalty}} THB</label>
+                </div>
+
+
+            </div>
+        </span>
+        <span class="container">
+            <div class="row justify-content-between">
+                <div class="col-12 col-md-8 pt-1">
+                    <label class="fw-semibold">Total amount Payable </label>
+                </div>
+                <div class="col-12 col-md-4 pt-1 money-right">
+                    <label>{{totalAmount}} THB</label>
+                </div>
+            </div>
+        </span>
+
+        <br><br>
+
+        <h5> Declaration</h5>
+        <hr>
+        <P class="fw-medium">I hereby certify that information given above are true and correct and agree to be bound by
+            such information.</P>
+    </div>
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+            <div class="box-input pt-2">
+                <button type="button" class="btn btn-dark rounded-pill" (click)="confirm()">Confirm and Submit</button>
+            </div>
+        </div>
+    </div>
+
+</div>

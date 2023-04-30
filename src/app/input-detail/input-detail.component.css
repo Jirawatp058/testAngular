@@ -1,0 +1,18 @@
+.box-input{
+    width: 100%;
+    max-width: 1024px;
+}
+
+.box{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.require{
+    border: 1px solid red !important;
+}
+
+.data-box{
+    padding-top: 7rem!important;
+}

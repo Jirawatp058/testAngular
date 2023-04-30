@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DetailService } from './detail.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'test-angular';
+  page:string = "";
+  constructor(public detailService: DetailService) { }
+
+  ngOnInit(): void {
+    this.detailService.getPage().subscribe(x => {
+      this.page = x
+    });
+  }
+
 }
